@@ -10,10 +10,10 @@ dt <- tibble::tribble(
   6, 2,
   7, 1
 )
-dt
+
 color = c('#668B24','#C3C4BF','#E15241','#D4C479','#0E8AAC',
           '#A4D291','#CF5D05')
-setwd('D:/Learn/R/hw/hw_03')
+
 img <- png::readPNG('lego_example.png')
 
 ggplot(dt) +
@@ -25,5 +25,3 @@ ggplot(dt) +
         axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
   labs(x = NULL, y = NULL)
-  
-
