@@ -1,0 +1,42 @@
+---
+title: "03 geom_bar and group for proportion"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+对钻石的不同cut计数
+
+```{r}
+diamonds %>%
+  ggplot() +
+  geom_bar(aes(x=cut))
+```
+
+计算各cut在总数中所占比例
+
+```{r}
+diamonds %>%
+  ggplot() +
+  geom_bar(aes(x=cut,y=..prop..))
+```
+
+..prop..用于计算比例（？）
+
+但此处返回数据为Fair在Fair总数中所占比例（也就是1）、good在good总数中所占比例...
+
+为此，引入group="whatever"
+
+```{r}
+diamonds %>%
+  ggplot() +
+  geom_bar(aes(x=cut,y=..prop..,group=1))
+```
+得到各cut在总体中所占比例.
+group="whatever"是一个虚拟分组，用于覆盖原来的默认分组行为。
+
+在geom_bar中，数据已经按照"x=cut"进行分类，为此得出的结果为fair在fair组中所占比例。
+而group="whatever"覆盖了这一分组行为。
